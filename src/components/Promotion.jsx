@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import PromoCard from "./PromoCard";
 import { GlobalContext } from "../main.jsx";
+import { useNavigate } from "react-router";
 
 const Promotion = (props) => {
   const [aleatorio, setAleatorio] = useState([]);
@@ -10,6 +11,7 @@ const Promotion = (props) => {
     () => [
       {
         id: 1,
+        Anolancamento: 2023,
         titulo: "Counter-Strike 2",
         preco: 0.0,
         desconto: 0,
@@ -17,10 +19,17 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
         descricao:
           "O clássico FPS competitivo retorna com gráficos renovados e jogabilidade ainda mais precisa. Perfeito para amantes de tiro tático.",
-        categoria: "FPS",
+        categorias: ["FPS", "Multiplayer", "Competitivo"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_4.jpg",
+        ],
       },
       {
         id: 2,
+        Anolancamento: 2020,
         titulo: "Cyberpunk 2077",
         preco: 129.99,
         desconto: 20,
@@ -28,10 +37,17 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",
         descricao:
           "Explore Night City como um mercenário em um futuro distópico, com narrativa profunda e visuais impressionantes.",
-        categoria: "RPG de Ação",
+        categorias: ["RPG", "Ação", "Mundo Aberto"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_4.jpg",
+        ],
       },
       {
         id: 3,
+        Anolancamento: 2022,
         titulo: "Elden Ring",
         preco: 249.9,
         desconto: 35,
@@ -39,9 +55,16 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",
         descricao:
           "Uma aventura épica em mundo aberto criada por Hidetaka Miyazaki e George R. R. Martin. Desafios intensos e lore profundo.",
-        categoria: "RPG",
+        categorias: ["RPG", "Ação", "Aventura"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_4.jpg",
+        ],
       },
       {
+        Anolancamento: 2018,
         id: 4,
         titulo: "Red Dead Redemption 2",
         preco: 199.9,
@@ -50,10 +73,17 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg",
         descricao:
           "Viva o Velho Oeste como Arthur Morgan em uma jornada cinematográfica com detalhes incríveis e mundo vivo.",
-        categoria: "Ação e Aventura",
+        categorias: ["Ação", "Aventura", "Mundo Aberto"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_4.jpg",
+        ],
       },
       {
         id: 5,
+        Anolancamento: 2023,
         titulo: "Hogwarts Legacy",
         preco: 229.99,
         desconto: 10,
@@ -61,9 +91,16 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/990080/header.jpg",
         descricao:
           "Mergulhe no mundo bruxo de Hogwarts no século XIX. Crie seu próprio bruxo e descubra segredos mágicos.",
-        categoria: "RPG de Ação",
+        categorias:[ "RPG", "Aventura", "Mundo Aberto"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/990080/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/990080/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/990080/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/990080/ss_4.jpg",
+        ],
       },
       {
+        Anolancamento: 2015,
         id: 6,
         titulo: "The Witcher 3: Wild Hunt",
         preco: 89.99,
@@ -72,10 +109,17 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",
         descricao:
           "Acompanhe Geralt de Rívia em sua busca épica por Ciri. Combate envolvente, escolhas impactantes e um dos melhores RPGs já feitos.",
-        categoria: "RPG",
+        categorias: ["RPG", "Ação", "Aventura"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_4.jpg",
+        ],
       },
       {
         id: 7,
+        Anolancamento: 2018,
         titulo: "God of War",
         preco: 159.99,
         desconto: 25,
@@ -83,9 +127,16 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg",
         descricao:
           "Kratos retorna em uma jornada emocional com seu filho Atreus. Uma releitura nórdica da lenda do Deus da Guerra.",
-        categoria: "Ação e Aventura",
+        categorias: ["Ação", "Aventura", "RPG"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_4.jpg",
+        ],
       },
       {
+        Anolancamento: 2023,
         id: 8,
         titulo: "FIFA 24",
         preco: 299.9,
@@ -94,7 +145,13 @@ const Promotion = (props) => {
           "https://cdn.cloudflare.steamstatic.com/steam/apps/2195250/header.jpg",
         descricao:
           "O mais recente simulador de futebol da EA Sports, com gráficos realistas e modo carreira renovado.",
-        categoria: "Esportes",
+        categorias: ["Esporte", "Competitivo", "Multiplayer"],
+        imagens: [
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/2195250/ss_1.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/2195250/ss_2.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/2195250/ss_3.jpg",
+          "https://cdn.cloudflare.steamstatic.com/steam/apps/2195250/ss_4.jpg",
+        ],
       },
     ],
     []
@@ -109,6 +166,10 @@ const Promotion = (props) => {
 
     setAleatorio(aleatorioJogos);
   }, [games]);
+  const navigate = useNavigate();
+  const lidarCardClick = (jogo) => {
+    navigate(`/jogospage/`,{state:jogo});//Navega para a página do jogo selecionado
+  };
 
   return (
     <div id="promotion" className="container w-75 my-4">
@@ -130,6 +191,7 @@ const Promotion = (props) => {
             imagem={jogo.imagem}
             formatarMoeda={formatarMoeda} // Passando a função para o PromoCard
             onAddCarrinho={() => props.onAddCarrinho(jogo)}
+            onClick={() => lidarCardClick(jogo)}
           />
         ))}
       </div>

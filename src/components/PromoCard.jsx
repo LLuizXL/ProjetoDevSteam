@@ -4,7 +4,7 @@ const PromoCard = (props) => {
   const precoComDesconto = props.preco - (props.preco * props.desconto) / 100;
 
   return (
-    <div id="PromoCard" className="promoCard card border-0 overflow-hidden">
+    <div id="PromoCard" onClick={props.onClick} className="promoCard card border-0 overflow-hidden">
       <img
         className="card-img-top object-fit-cover"
         src={props.imagem}
