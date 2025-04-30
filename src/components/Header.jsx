@@ -28,7 +28,7 @@ const Header = (props) => {
         {usuario ? (
           <span className="d-flex align-items-center gap-2 me-0 me-md-5">
             <span className="d-none d-md-block">
-              Olá, {usuario.nome.split(" ")[0]}!{" "}
+              Olá, {usuario.nickname.split(" ")[0]}!{" "}
             </span>
             <div className="dropdown">
               <div
@@ -40,9 +40,9 @@ const Header = (props) => {
                 aria-expanded="false"
               >
                 <img
-                  src={`https://ui-avatars.com/api/?name=${usuario.nome}&background=2b87ae&color=fff`}
+                  src={usuario.pfp || `https://ui-avatars.com/api/?name=${usuario.nome}&background=2b87ae&color=fff`}
                   alt={usuario.nome}
-                  className="rounded-circle"
+                  className="rounded-circle object-fit-cover"
                   width="40"
                   height="40"
                 />
