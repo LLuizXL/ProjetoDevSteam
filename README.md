@@ -1,5 +1,5 @@
-# 🎮 DevSteam
-
+# 🎮 DevSteam (Base criada por ProfCastello)
+     
 DevSteam é uma aplicação web inspirada na plataforma Steam, desenvolvida com **React + Vite**, que exibe uma loja de jogos com descrições detalhadas, imagens, preços, descontos e muito mais.
 
 ---
