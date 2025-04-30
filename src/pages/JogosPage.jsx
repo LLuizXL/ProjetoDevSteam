@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { CarrinhoContext } from "../utils/CarrinhoContext";
-import { useLocation } from "react-router";
+import { useLocation} from "react-router";
 
 import "../App.css";
 import Header from "../components/Header";
@@ -12,6 +12,7 @@ function JogosPage() {
   const location = useLocation();
   const jogo = location.state;
   const precoComDesconto = jogo.preco - (jogo.preco * jogo.desconto) / 100;
+  
   const {
     carrinhoItem,
     handleAddCarrinho,
@@ -53,27 +54,26 @@ function JogosPage() {
               <img
                 src={imagemPrincipal}
                 alt="Imagem Principal"
-                className="img-fluid rounded"
+                className="img-fluid rounded imagemPrincipal"
               />
             </div>
-            <div className="d-flex justify-content-between">
+            <div className="miniaturas-container">
               {jogo.imagens.map((imagem, index) => (
                 <img
                   key={index}
                   src={imagem}
                   alt={`Miniatura ${index + 1}`}
                   onClick={() => setImagemPrincipal(imagem)}
-                  className={`img-thumbnail ${
-                    imagem === imagemPrincipal ? "border-primary" : ""
+                  className={`img  miniatura${
+                    imagem === imagemPrincipal ? "border-primary miniatura" : ""
                   }`}
-                  style={{ width: "60px", height: "60px", cursor: "pointer" }}
                 />
               ))}
             </div>
           </div>
                  {/* Coluna Direita */}
-                 <div className="col-lg-4 order-1 order-md-2 mb-4 mb-md-0">
-              <div className="card">
+                 <div className="col-lg-4 order-1 order-md-2 mb-4 ">
+              <div className="card paginaLoja text-light">
                 <img
                   src={jogo.imagem}
                   alt="Capa do Jogo"
@@ -81,7 +81,7 @@ function JogosPage() {
                 />
                 <div className="card-body">
                   <p className="card-text">{jogo.descricao}</p>
-                  <p className="text-muted">
+                  <p className="text-muted text-light">
                     <small>Data lançamento: {jogo.Anolancamento}</small>
                   </p>
                   <div className="d-flex flex-wrap gap-2">
@@ -100,34 +100,58 @@ function JogosPage() {
 
           </div>
         {/* Rodapé de Compra/Promoção */}
-        <div className="row mt-4">
-          <div className="col">
-            <div className="d-flex justify-content-between align-items-center p-3 bg-light rounded">
-              <div>
-                <span className="badge bg-success fs-6">-{jogo.desconto}%</span>
-                <p className="text-muted text-decoration-line-through mb-0">
-                  {formatarMoeda(jogo.preco)}
-                </p>
-                <p className="fs-4 fw-bold mb-0">
-                  {formatarMoeda(precoComDesconto)}
-                </p>
-              </div>
-              <button
-                className="btn btn-success btn-lg"
-                onClick={() =>
-                  handleAddCarrinho({
-                    id: jogo.id,
-                    titulo: jogo.titulo,
-                    preco: precoComDesconto,
-                  })
-                }
-              >
-                <i className="bi bi-cart-plus me-2"></i>
-                ADICIONAR AO CARRINHO
-              </button>
-            </div>
-        </div>
+        <div className="row mt-4 w-50 mx-auto">
+  <div className="col">
+    <div className="d-flex justify-content-between align-items-center p-3 rounded bg-secondary">
+      <div>
+        <h5 className="text-white fw-bold mb-0">Comprar {jogo.titulo}</h5>
+        <p className="text-info mb-0">Promoção especial! Termina em breve</p>
       </div>
+
+      <div
+        className="d-flex align-items-center gap-2 p-2 rounded compraPage"
+      >
+        {jogo.desconto > 0 ? (
+          <>
+            <span
+              className="desconto h-100 fw-bold h5 m-0"
+             
+            >
+              -{jogo.desconto}%
+            </span>
+            <div>
+            <span className="row m-0 p-0 text-end text-secondary text-decoration-line-through small">
+              {formatarMoeda(jogo.preco)}
+            </span>
+            <span className="row corValor m-0 p-0 fs-4 text-end fw-bolder">
+              {formatarMoeda(precoComDesconto)}
+            </span>
+            </div>
+          </>
+        ) : (
+          <span className="text-white fw-bold fs-5">
+            {formatarMoeda(jogo.preco)}
+          </span>
+        )}
+        <button
+          className="btn btn-success desconto text-light w-100 border-0"
+          onClick={() =>
+            handleAddCarrinho({
+              id: jogo.id, 
+              titulo: jogo.titulo, 
+              desconto: jogo.desconto,
+              preco: jogo.preco, 
+              imagem: jogo.imagem, 
+              quantidade: 1, 
+            })
+          }
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
       <CarrinhoOffCanvas
         onRemoveCarrinho={handleRemoveCarrinho}
         onUpdateCarrinho={handleUpdateCarrinho}
