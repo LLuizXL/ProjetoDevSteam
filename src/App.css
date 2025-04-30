@@ -45,3 +45,7 @@ body {
 input.form-control:focus {
   box-shadow: none;
 }
+
+.paginaLoja {
+  background: linear-gradient(to bottom, #19587b, #2b87ae);
+}

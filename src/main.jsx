@@ -11,6 +11,7 @@ import Login from "./pages/Login.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import { formatarMoeda } from "./utils/formatters.js";
 import {CarrinhoProvider} from "./utils/CarrinhoContext.jsx";
+import JogosPage from "./pages/JogosPage.jsx";
 
 // Contexto global acessível a todas as rotas
 export const GlobalContext = createContext(null);
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/jogospage" element={<JogosPage/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
