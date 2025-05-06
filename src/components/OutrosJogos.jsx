@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import GameCard from "./GameCard";
+import GameModal from "./GameModal";
 import { useNavigate } from "react-router";
 import { GlobalContext } from "../main";
 
@@ -165,6 +166,24 @@ const OutrosJogos = ({jogosFiltrados = [], onAddCarrinho}) => {
   const lidarCardClick = (jogo) => {
     navigate(`/jogospage/`, { state: jogo });
   };
+  const [showModal, setShowModal] = useState(false);
+  const [jogoSelecionado, setJogoSelecionado] = useState(null);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+
+  const handleMouseEnter = (jogo, event) => {
+    const rect = event.currentTarget.getBoundingClientRect(); // Obtém a posição do card
+    setModalPosition({
+      top: rect.top + window.scrollY, // Posição vertical do card
+      left: rect.right + 10, // Posição horizontal ao lado do card
+    });
+    setJogoSelecionado(jogo); // Define o jogo selecionado
+    setShowModal(true); // Exibe a modal
+  };
+
+  const handleMouseLeave = () => {
+    setShowModal(false); // Oculta a modal
+    setJogoSelecionado(null); // Limpa o jogo selecionado
+  };
 
   return (
     <div id="outrosJogos" className="container w-100 my-5">
@@ -174,6 +193,11 @@ const OutrosJogos = ({jogosFiltrados = [], onAddCarrinho}) => {
       <div id="itensJogos" className="d-flex flex-column ms-md-5 ps-md-3 gap-4 ">
         {jogosFiltrados.length > 0 ?(
         jogosFiltrados.map((jogo) => (
+          <div
+          key={jogo.id}
+          onMouseEnter={(event) => handleMouseEnter(jogo, event)}
+          onMouseLeave={handleMouseLeave}
+        >
           <GameCard
             key={jogo.id}
             id={jogo.id}
@@ -186,10 +210,30 @@ const OutrosJogos = ({jogosFiltrados = [], onAddCarrinho}) => {
             onAddCarrinho={() => onAddCarrinho(jogo)}
             onClick={() => lidarCardClick(jogo)}
           />
+          </div>
         ))) : (
           <p>Nenhum jogo encontrado</p>
         )}
       </div>
+       {/* Modal flutuante */}
+       {showModal && jogoSelecionado && (
+        <div
+          style={{
+            position: "absolute",
+            top: modalPosition.top,
+            left: modalPosition.left,
+            zIndex: 1050,
+            backgroundColor: "#222",
+            color: "#fff",
+            borderRadius: "8px",
+            padding: "16px",
+            width: "300px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <GameModal jogo={jogoSelecionado} />
+        </div>
+      )}
     </div>
   );
 };
