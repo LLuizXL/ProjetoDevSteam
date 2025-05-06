@@ -66,3 +66,16 @@ input.form-control:focus {
 .compraPage{
   background: #2a2c2e;
 }
+.outrosJogos{
+  background: linear-gradient(to bottom, #2c3941, #0d3444);
+}
+.jogoCard div:nth-of-type(1) {
+  transition: transform 0.2s;
+}
+.jogoCard div:nth-of-type(1):hover{
+  background: linear-gradient(to bottom, #5c8da7, #8dddff);
+}
+.imgJogoCard{
+  width: 102px;
+  height: 48px;
+}

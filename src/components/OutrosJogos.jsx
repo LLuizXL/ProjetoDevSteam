@@ -165,7 +165,7 @@ const OutrosJogos = (props) => {
       <h2 className="text-uppercase text-center text-md-start ms-md-5 ps-md-3 mb-4">
         Outros Jogos
       </h2>   
-      <div id="itensJogos" className="d-flex flex-column ms-md-5 ps-md-3 gap-4">
+      <div id="itensJogos" className="d-flex flex-column ms-md-5 ps-md-3 gap-4 ">
         {games.map((jogo) => (
           <GameCard key={jogo.id} id={jogo.id}
           

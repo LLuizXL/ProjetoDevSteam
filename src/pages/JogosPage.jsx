@@ -100,7 +100,7 @@ function JogosPage() {
 
           </div>
         {/* Rodapé de Compra/Promoção */}
-        <div className="row mt-4 w-50 mx-auto">
+        <div className="row mt-4 col-lg-8 col-12 mx-auto">
   <div className="col">
     <div className="d-flex justify-content-between align-items-center p-3 rounded bg-secondary">
       <div>
@@ -151,7 +151,7 @@ function JogosPage() {
             })
           }
         >
-          Add to Cart
+        <i className="bi bi-cart-plus text-center ">Adicionar</i>
         </button>
       </div>
     </div>
