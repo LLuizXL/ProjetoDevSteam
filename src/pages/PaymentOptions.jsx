@@ -53,7 +53,7 @@ const handleSavCard = (e) => {
 
       <div className="container mt-md-5 ">
         <span className="fs-5 fw-medium text-uppercase">Adicionar Opção de Pagamento</span>
-        <div className=" p-3 rounded-2 py-3 w-75 my-1 bg-gradient border-black border">
+        <div className=" p-3  rounded-2 py-3 w-100 my-1 bg-gradient border-black border">
           <form action="">
             <div className="d-flex flex-md-row flex-column">
 
@@ -64,7 +64,7 @@ const handleSavCard = (e) => {
                 <input
                 value={cartao.cardNum}
                   type=""
-                  name="numeroCartao"
+                  name="cardNum"
                   className=" w-75"
                   onChange={handleInputChange}
                 ></input>
@@ -78,6 +78,7 @@ const handleSavCard = (e) => {
                 <input className="w-50"
                 value={cartao.cardCVV}
                 onChange={handleInputChange}
+                name="cardCVV"
                 ></input>
               </div>
 
@@ -87,13 +88,14 @@ const handleSavCard = (e) => {
                   </label>
                   <input className="w-50"
                 value={cartao.cardDate}
+                name="cardDate"
                 onChange={handleInputChange}></input>
               
                   
                 
               </div>
             </div>
-                    <div className="buttonsSaveCancel d-flex flex-row justify-content-center gap-3">
+                    <div className="buttonsSaveCancel d-flex flex-row justify-content-center gap-3 my-3 my-md-0">
                   <button id='addCarrinho' className="btn btn-small btn-success" onClick={handleSavCard}>
                     <small> Salvar</small>
                   </button>
@@ -105,7 +107,7 @@ const handleSavCard = (e) => {
         </div>
       </div>
       <h3 className="text-center my-2">Cartões Salvos:</h3>
-      <div className="container my-5">
+      <div className="container my-5 d-flex flex-md-row flex-column gap-5 align-items-center align-items-md-start">
       {savedCards.length > 0 ? (
     savedCards.map((cartao, index) => (
       <Cards

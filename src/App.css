@@ -62,6 +62,7 @@ background: linear-gradient(to bottom, rgb(100, 100, 100), #504f4f)
 .form input, .form input:focus{
   box-shadow:  0px 1px 4px  #000000 inset;
   background: #363636;
+  color: white;
 }
 
 
@@ -100,4 +101,9 @@ background: linear-gradient(to bottom, rgb(100, 100, 100), #504f4f)
  }
 #dragImg:hover{
   box-shadow: 0px 0px 40px #2b87ae;
+}
+
+#cadJogo {
+  background-color: #6e6c6e;
+
 }

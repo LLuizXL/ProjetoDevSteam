@@ -2,7 +2,7 @@ import React from "react";
 
 const Cards = (props) => {
   return (
-    <div className="container p-3 border border-light rounded-3">
+    <div className="p-3 border border-light rounded-3 w-50">
       <h2>Cartão # {props.index}: </h2>
       <div className="form-label">Número do cartão: {props.cardNum}</div>
       <div className="form-label">Codigo de segurança: {props.cardCVV}</div>

@@ -13,6 +13,7 @@ import Profile from "./pages/Profile.jsx";
 
 import { formatarMoeda } from "./utils/formatters.js";
 import PaymentOptions from "./pages/PaymentOptions.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 // Contexto global acessível a todas as rotas
 export const GlobalContext = createContext(null);
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/paymentoptions" element={<PaymentOptions />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </GlobalContext.Provider>
