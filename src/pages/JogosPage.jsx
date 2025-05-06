@@ -105,7 +105,11 @@ function JogosPage() {
     <div className="d-flex justify-content-between align-items-center p-3 rounded bg-secondary">
       <div>
         <h5 className="text-white fw-bold mb-0">Comprar {jogo.titulo}</h5>
-        <p className="text-info mb-0">Promoção especial! Termina em breve</p>
+       {jogo.desconto > 0?(
+        <>
+         <p className="text-info mb-0">Promoção especial! Termina em breve</p>
+         </>
+       ) : <p></p>}
       </div>
 
       <div
@@ -113,6 +117,7 @@ function JogosPage() {
       >
         {jogo.desconto > 0 ? (
           <>
+       
             <span
               className="desconto h-100 fw-bold h5 m-0"
              

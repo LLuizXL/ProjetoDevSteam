@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import GameCard from "./GameCard";
+import { useNavigate } from "react-router";
+import { GlobalContext } from "../main";
 
-const OutrosJogos = () => {
+const OutrosJogos = (props) => {
+  const { formatarMoeda } = useContext(GlobalContext);
  const games = React.useMemo(
      () => [
        {
@@ -151,19 +154,35 @@ const OutrosJogos = () => {
      ],
      []
    );
+   const navigate = useNavigate();
+   const lidarCardClick = (jogo) => {
+     navigate(`/jogospage/`,{state:jogo});//Navega para a página do jogo selecionado
+   };
+ 
 
   return (
-    <div id="outrosJogos" className="container w-75 my-5">
+    <div id="outrosJogos" className="container w-100 my-5">
       <h2 className="text-uppercase text-center text-md-start ms-md-5 ps-md-3 mb-4">
         Outros Jogos
-      </h2>
+      </h2>   
       <div id="itensJogos" className="d-flex flex-column ms-md-5 ps-md-3 gap-4">
-        {games.map((item) => (
-          <GameCard key={item.id} id={item.id} />
+        {games.map((jogo) => (
+          <GameCard key={jogo.id} id={jogo.id}
+          
+          titulo={jogo.titulo}
+          preco={jogo.preco}
+          precoFormatado={formatarMoeda(jogo.preco)}
+          desconto={jogo.desconto}
+          imagem={jogo.imagem}
+          formatarMoeda={formatarMoeda} // Passando a função para o PromoCard
+          onAddCarrinho={() => props.onAddCarrinho(jogo)}
+          onClick={() => lidarCardClick(jogo)} />
         ))}
+        
       </div>
     </div>
   );
 };
 
 export default OutrosJogos;
+

@@ -7,7 +7,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Promotion from "./components/Promotion";
 import CarrinhoOffCanvas from "./components/CarrinhoOffCanvas";
-import OutrosJogos from "./components/OutrosJogos";
+import OutrosJogosContainer from "./components/OutrosJogosContainer";
 
 function App() {
   const {
@@ -30,7 +30,7 @@ function App() {
         onUpdateCarrinho={handleUpdateCarrinho}
         carrinhoItem={carrinhoItem}
       />
-      <OutrosJogos />
+      <OutrosJogosContainer onAddCarrinho={handleAddCarrinho} />
     </>
   );
 }
