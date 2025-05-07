@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import PromoCard from "./PromoCard";
+import GameModal from "./GameModal";
 import { GlobalContext } from "../main.jsx";
 import { useNavigate } from "react-router";
 
@@ -170,6 +171,24 @@ const Promotion = (props) => {
   const lidarCardClick = (jogo) => {
     navigate(`/jogospage/`,{state:jogo});//Navega para a página do jogo selecionado
   };
+   const [showModal, setShowModal] = useState(false);
+    const [jogoSelecionado, setJogoSelecionado] = useState(null);
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  
+    const handleMouseEnter = (jogo, event) => {
+      const corrigir = event.currentTarget.getBoundingClientRect(); // Obtém a posição do card em relação a janela do navegador
+      setModalPosition({
+        top: corrigir.top + window.scrollY, // Posição vertical do card
+        left: corrigir.right + 10, // Posição horizontal ao lado do card
+      });
+      setJogoSelecionado(jogo); // Define o jogo selecionado
+      setShowModal(true); // Exibe a modal
+    };
+  
+    const handleMouseLeave = () => {
+      setShowModal(false); // Oculta a modal
+      setJogoSelecionado(null); // Limpa o jogo selecionado
+    };
 
   return (
     <div id="promotion" className="container w-75 my-4">
@@ -182,6 +201,10 @@ const Promotion = (props) => {
       >
         {/* mapeando um array com react */}
         {aleatorio.map((jogo) => (
+          <div
+          key={jogo.id}
+          onMouseEnter={(event) => handleMouseEnter(jogo, event)}
+          onMouseLeave={handleMouseLeave}>
           <PromoCard
             key={jogo.id}
             titulo={jogo.titulo}
@@ -193,8 +216,20 @@ const Promotion = (props) => {
             onAddCarrinho={() => props.onAddCarrinho(jogo)}
             onClick={() => lidarCardClick(jogo)}
           />
+          </div>
         ))}
       </div>
+       {/* Modal flutuante */}
+       {showModal && jogoSelecionado && (
+        <div className="estilizacaoModal"
+          style={{
+          top: modalPosition.top,
+          left: modalPosition.left,
+          }}
+        >
+          <GameModal jogo={jogoSelecionado} />
+        </div>
+      )}
     </div>
   );
 };

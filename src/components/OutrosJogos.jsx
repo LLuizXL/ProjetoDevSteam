@@ -171,10 +171,10 @@ const OutrosJogos = ({jogosFiltrados = [], onAddCarrinho}) => {
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
   const handleMouseEnter = (jogo, event) => {
-    const rect = event.currentTarget.getBoundingClientRect(); // Obtém a posição do card
+    const corrigir = event.currentTarget.getBoundingClientRect(); // Obtém a posição do card em relação a janela do navegador
     setModalPosition({
-      top: rect.top + window.scrollY, // Posição vertical do card
-      left: rect.right + 10, // Posição horizontal ao lado do card
+      top: corrigir.top + window.scrollY, // Posição vertical do card
+      left: corrigir.right + 10, // Posição horizontal ao lado do card
     });
     setJogoSelecionado(jogo); // Define o jogo selecionado
     setShowModal(true); // Exibe a modal
@@ -217,18 +217,10 @@ const OutrosJogos = ({jogosFiltrados = [], onAddCarrinho}) => {
       </div>
        {/* Modal flutuante */}
        {showModal && jogoSelecionado && (
-        <div
+        <div className="estilizacaoModal"
           style={{
-            position: "absolute",
-            top: modalPosition.top,
-            left: modalPosition.left,
-            zIndex: 1050,
-            backgroundColor: "#222",
-            color: "#fff",
-            borderRadius: "8px",
-            padding: "16px",
-            width: "300px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          top: modalPosition.top,
+          left: modalPosition.left,
           }}
         >
           <GameModal jogo={jogoSelecionado} />

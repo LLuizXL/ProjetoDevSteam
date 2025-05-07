@@ -53,6 +53,10 @@ export const CarrinhoProvider = ({ children }) => {
       )
     );
   };
+  const handleClearCarrinho = () => {
+    setCarrinhoItem([]); // Limpa o estado do carrinho
+    localStorage.removeItem("devcarrinho"); // Remove os itens do localStorage
+  };
 
   return (
     <CarrinhoContext.Provider
@@ -61,6 +65,7 @@ export const CarrinhoProvider = ({ children }) => {
         handleAddCarrinho,
         handleRemoveCarrinho,
         handleUpdateCarrinho,
+        handleClearCarrinho,
       }}
     >
       {children}

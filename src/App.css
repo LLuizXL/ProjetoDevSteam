@@ -79,3 +79,21 @@ input.form-control:focus {
   width: 102px;
   height: 48px;
 }
+.estilizacaoModal{
+  position: absolute;
+  z-Index: 1050;
+  background-Color: #fff;
+  color: #8dddff;
+  border-Radius: 8px;
+  padding: 16px;
+  width: 300px;
+  box-Shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.gameModal{
+  width: 300px;
+  height: 340px;
+  background-Color: #FFF;
+  color: #fff;
+  border-Radius: 8px;
+  text-Align: center;
+}

@@ -6,15 +6,7 @@ const GameModal = ({ jogo }) => {
   if (!jogo || !jogo.imagens || jogo.imagens.length === 0) {
     return (
       <div
-        className="modal-content p-3"
-        style={{
-          width: "300px",
-          height: "340px",
-          backgroundColor: "#222",
-          color: "#fff",
-          borderRadius: "8px",
-          textAlign: "center",
-        }}
+        className="modal-content p-3 gameModal"
       >
         <h1 className="fs-4 mb-2">Jogo não encontrado</h1>
       </div>
@@ -37,14 +29,6 @@ const GameModal = ({ jogo }) => {
   return (
     <div
       className="modal-content p-3"
-      style={{
-        width: "300px",
-        height: "340px",
-        backgroundColor: "#222",
-        color: "#fff",
-        borderRadius: "8px",
-        textAlign: "center",
-      }}
     >
       {/* Título */}
       <h1 className="fs-4 mb-2">{jogo.titulo}</h1>

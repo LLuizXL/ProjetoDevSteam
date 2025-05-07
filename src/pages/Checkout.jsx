@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { CarrinhoContext } from "../utils/CarrinhoContext";
 import { useNavigate } from "react-router";
 import { GlobalContext } from "../main.jsx";
 
-const Checkout = () => {
+const Checkout = (props) => {
   const [carrinho, setCarrinho] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [cupom, setCupom] = useState("");
@@ -22,12 +23,18 @@ const Checkout = () => {
 
   useEffect(() => {
     const itensCarrinho = localStorage.getItem("devcarrinho");
-    itensCarrinho ? setCarrinho(JSON.parse(itensCarrinho)) : navigate("/");
+    if (itensCarrinho) {
+      setCarrinho(JSON.parse(itensCarrinho));
+    } else {
+      setCarrinho([]); // Garante que o estado local seja atualizado
+    }
   }, [navigate]);
 
   const handleConfirmar = () => {
-    alert("Compra confirmada! Obrigado 😊");
     localStorage.removeItem("devcarrinho");
+    alert("Compra confirmada! Obrigado 😊");
+    setCarrinho([]); // Limpa o estado local do carrinho
+  props.onClearCarrinho(); 
     navigate("/");
   };
 
