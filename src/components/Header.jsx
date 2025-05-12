@@ -28,7 +28,16 @@ const Header = (props) => {
         {usuario ? (
           <span className="d-flex align-items-center gap-2 me-0 me-md-5">
             <span className="d-none d-md-block">
-              Olá, {usuario.nome.split(" ")[0]}!{" "}
+              
+              {usuario.email == "admin@admin" ? <span className="text-danger fw-bold">Acesso Administrativo </span>
+              
+              : <span>
+              Olá, <small id="basicInfo">
+              {usuario.nickname.split(" ")[0] || usuario.nome.split(" ")[0]}!{" "}
+              </small>
+              </span>
+              }
+
             </span>
             <div className="dropdown">
               <div
@@ -40,9 +49,9 @@ const Header = (props) => {
                 aria-expanded="false"
               >
                 <img
-                  src={`https://ui-avatars.com/api/?name=${usuario.nome}&background=2b87ae&color=fff`}
+                  src={usuario.pfp || `https://ui-avatars.com/api/?name=${usuario.nome}&background=2b87ae&color=fff`}
                   alt={usuario.nome}
-                  className="rounded-circle"
+                  className="rounded-circle object-fit-cover"
                   width="40"
                   height="40"
                 />
@@ -50,7 +59,13 @@ const Header = (props) => {
               <ul
                 className="dropdown-menu dropdown-menu-dark dropdown-menu-end"
                 aria-labelledby="dropdownPerfil"
+                
               >
+                {usuario.email == "admin@admin" ? 
+                <li> 
+                  <Link to={"/dashboard"}  className="dropdown-item text-warning fw-bolder"> Dashboard </Link>
+                </li> : <></>}
+                
                 <li>
                   <Link to={"/perfil"} className="dropdown-item">
                     Perfil
@@ -68,6 +83,7 @@ const Header = (props) => {
                     Sair
                   </Link>
                 </li>
+                
               </ul>
             </div>
           </span>
