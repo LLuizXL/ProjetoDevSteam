@@ -33,7 +33,7 @@ const Header = (props) => {
               
               : <span>
               Olá, <small id="basicInfo">
-              {usuario.nickname.split(" ")[0] || usuario.nome.split(" ")[0]}!{" "}
+              {usuario?.nickname?.split(" ")[0] || usuario?.nome?.split(" ")[0]}!{" "}
               </small>
               </span>
               }
@@ -49,8 +49,8 @@ const Header = (props) => {
                 aria-expanded="false"
               >
                 <img
-                  src={usuario.pfp || `https://ui-avatars.com/api/?name=${usuario.nome}&background=2b87ae&color=fff`}
-                  alt={usuario.nome}
+                  src={usuario.pfp || `https://ui-avatars.com/api/?name=${usuario?.nome}&background=2b87ae&color=fff`}
+                  alt={usuario?.nome}
                   className="rounded-circle object-fit-cover"
                   width="40"
                   height="40"
@@ -61,7 +61,7 @@ const Header = (props) => {
                 aria-labelledby="dropdownPerfil"
                 
               >
-                {usuario.email == "admin@admin" ? 
+                {usuario?.email == "admin@admin" ? 
                 <li> 
                   <Link to={"/dashboard"}  className="dropdown-item text-warning fw-bolder"> Dashboard </Link>
                 </li> : <></>}
