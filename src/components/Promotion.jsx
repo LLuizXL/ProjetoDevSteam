@@ -163,7 +163,7 @@ const Promotion = (props) => {
       .filter((jogo) => jogo.desconto > 0)
       //.sort((a, b) => b.desconto - a.desconto) //ordenação por desconto decrescente
       .sort(() => Math.random() - 0.5) //ordenação aleatória
-      .slice(0, 3);
+      // .slice(0, 3);
 
     setAleatorio(aleatorioJogos);
   }, [games]);
@@ -190,6 +190,8 @@ const Promotion = (props) => {
       setJogoSelecionado(null); // Limpa o jogo selecionado
     };
 
+
+
   return (
     <div id="promotion" className="container w-75 my-4">
       <h2 className="text-uppercase text-center text-md-start ms-md-5 ps-md-3 mb-4">
@@ -197,7 +199,7 @@ const Promotion = (props) => {
       </h2>
       <div
         id="itensPromo"
-        className="d-flex flex-wrap gap-4 justify-content-around"
+        className="d-flex flex-row col-md-4"
       >
         {/* mapeando um array com react */}
         {aleatorio.map((jogo) => (
